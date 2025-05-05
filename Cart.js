@@ -4,9 +4,19 @@ class Cart {
         this.total = total;
     }
 
-    addProduct(product) {
-        this.total += product.price;
+    addProduct(product, quantity) {
+        console.log(product.quantity, this.total)
+        if(quantity > product.quantity){
+         return console.log( `I'm sorry there are only ${quantity} of this product left`) 
+        }
+        
+        this.total += (product.price * quantity);
+        product.quantity -= quantity;
         this.products.push(product)
+        if(product.quantity === 0){
+            product.inStock = false
+        }
+        console.log(product.quantity, this.total)
     }
 
     removeProduct(index) {
